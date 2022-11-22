@@ -3,13 +3,12 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width", initial-scale="1.0" />
-        <style>
-            body {
-                margin: 0;
-            }
-        </style>
+        <link rel="stylesheet" href="./style.css">
     </head>
     <body>
+        <div class="text">
+            <p>It's so dull here. Maybe try playing some music? 🎵</p>
+        </div>
         <canvas id="c"></canvas>
         <script type="importmap">
             {
@@ -20,5 +19,14 @@
             }
         </script>
         <script type="module" src="./index.js"></script>
+        <audio src="" id="audio-play" autoplay=false loop=true></audio>
+        <div class="music-controls">
+            <button class="play-button">
+                <img class="play-icon" src="./image/playIcon.png">
+            </button>
+            <button class="shuffle-button">
+                <img class="shuffle-icon" src="./image/shuffleIcon.png">
+            </button>
+        </div>
     </body>
 </html>

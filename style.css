@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+
+html, body {
+    margin: 0;
+}
+
+.text {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    top: 20%;
+}
+
+.text p{
+    background-color: transparent;
+    margin: 0;
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 24px;
+    text-align: center;
+}
+
+#audio-play {
+    position: fixed;
+    z-index: 1;
+}
+
+.music-controls {
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    border: 0;
+    margin: 0;
+    top: 70%;
+}
+
+.play-button {
+    background-color: transparent;
+    border: transparent;
+    margin-right: 6px;
+}
+
+.shuffle-button {
+    background-color: transparent;
+    border: transparent;
+    margin-left: 6px;
+}
+
+.play-icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.shuffle-icon {
+    width: 3rem;
+    height: 3rem;
+}
