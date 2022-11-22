@@ -217,6 +217,9 @@ window.addEventListener('DOMContentLoaded',function() {
         }
 
         headGroupShake(0.01, 0.08);
+
+        dog_group.rotation.y = Math.PI/2/3;
+        dog_group.rotation.x = Math.PI/4/3;
     }
 
     //hungry state
