@@ -40,12 +40,14 @@ html, body {
     background-color: transparent;
     border: transparent;
     margin-right: 6px;
+    cursor: pointer;
 }
 
 .shuffle-button {
     background-color: transparent;
     border: transparent;
     margin-left: 6px;
+    cursor: pointer;
 }
 
 .play-icon {

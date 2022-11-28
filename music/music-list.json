@@ -14,16 +14,30 @@
     },
 
     "track3": {
-        "name":"flower-nap",
-        "artist":"Monoman",
-        "uri":"./music/flower-nap.mp3",
-        "mood":"sleepy"
-    },
-
-    "track4": {
         "name":"chicken-wing",
         "artist":"Saif Shawaf",
         "uri":"./music/chicken-wing.mp3",
         "mood": "hungry"
+    },
+
+    "track4":{
+        "name":"iced tea for breakfast",
+        "artist":"In Love With A Ghost",
+        "uri":"./music/iced-tea-for-breakfast.mp3",
+        "mood":"peaceful"
+    },
+
+    "track5":{
+        "name":"Merry Christmas Mr. Lawrence",
+        "artist":"Ryuichi Sakamoto",
+        "uri":"./music/Merry-Christmas-Mr.-Lawrence.mp3",
+        "mood":"sorrowful"
+    },
+
+    "track6":{
+        "name":"Am I a Girl? Am I a Boy? Do I Really Care?",
+        "artist":"In Love With A Ghost",
+        "uri":"./music/Am-I-a-Girl-Am-I-a-Boy-Do-I-Really-Care.mp3",
+        "mood":"bounce"
     }
 }
