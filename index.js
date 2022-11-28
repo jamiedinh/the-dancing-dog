@@ -514,7 +514,6 @@ window.addEventListener('DOMContentLoaded',function() {
         if(audioPlay.paused === true){
             // defaultAnimate();
             console.log("default");
-            text.style.display = 'block';
         }else{
             text.style.display='none';
             if(mood==="chill"){
