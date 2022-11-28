@@ -1,5 +1,7 @@
 # Dancing Dog - Threejs
 
+View live here: https://ngocbdinh.github.io/demo-threejs/
+
 This is a project made with Threejs. The 3D dog model will have different animations reacting to different types of music. Users can shuffle the music to see different states. Songs will be played randomly.
 
 What reflected on the website at the moment pretty much matches what we have planned from the beginning of the course.
