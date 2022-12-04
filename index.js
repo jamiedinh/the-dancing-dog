@@ -3,6 +3,9 @@ import * as THREE from './node_modules/three/build/three.module.js';
 import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from './node_modules/three/examples/jsm/loaders/GLTFLoader.js';
 
+//open about
+
+
 
 window.addEventListener('DOMContentLoaded',function() {
     //music player elements
@@ -79,7 +82,8 @@ window.addEventListener('DOMContentLoaded',function() {
 
     //create Renderer
     const canvas = document.querySelector('#c');
-    const renderer = new THREE.WebGLRenderer({canvas});
+    const renderer = new THREE.WebGLRenderer({canvas}, { alpha: true });
+    renderer.setClearColor( 0x000000, 0 );
     renderer.setSize(innerWidth, innerHeight)
     document.body.appendChild(renderer.domElement);
 
@@ -90,7 +94,7 @@ window.addEventListener('DOMContentLoaded',function() {
 
     //create Scene
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xFFECFB)
+    // scene.background = new THREE.Color(0xFFECFB)
 
     //orbit control
     const controls = new OrbitControls(camera, renderer.domElement);
