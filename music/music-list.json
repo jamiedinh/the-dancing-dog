@@ -1,20 +1,20 @@
 {
     "track1": {
-        "name":"barberbeat",
-        "artist":"Macroblank",
-        "uri":"./music/barberbeat.mp3",
+        "name":"GTA San Andreas Theme Song",
+        "artist":"Michael Hunter",
+        "uri":"./music/GTA.mp3",
         "mood":"chill"
     },
 
     "track2": {
-        "name":"cherry-blossom-and-you",
+        "name":"Spring, Cherry Blossom and You",
         "artist":"The Epitone Project",
         "uri":"./music/cherry-blossom-and-you.mp3",
         "mood":"spring"
     },
 
     "track3": {
-        "name":"chicken-wing",
+        "name":"Chicken Wing",
         "artist":"Saif Shawaf",
         "uri":"./music/chicken-wing.mp3",
         "mood": "hungry"

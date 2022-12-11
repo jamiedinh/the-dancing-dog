@@ -3,9 +3,24 @@ import * as THREE from './node_modules/three/build/three.module.js';
 import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from './node_modules/three/examples/jsm/loaders/GLTFLoader.js';
 
-//open about
 
 
+//OPEN ABOUT PAGE
+const about = document.getElementById("about");
+const open = document.getElementById("open-about");
+const close = document.getElementById("close-about");
+            
+open.onclick = function() {
+    about.style.display = "block";
+};
+
+close.onclick = function() {
+    about.style.display = "none";
+};
+
+
+
+//INTERACTIVE ELEMENTS
 
 window.addEventListener('DOMContentLoaded',function() {
     //music player elements
@@ -14,7 +29,12 @@ window.addEventListener('DOMContentLoaded',function() {
     const playIcon = document.querySelector(".play-icon");
     const audioPlay = document.querySelector("#audio-play"); 
     const text = document.querySelector(".text");
+    const muteButton = document.querySelector("#mute");
+    const muteIcon = document.querySelector(".mute-icon");
+    const songInfo = document.querySelector("#song-info");
 
+    
+    
     //MUSIC
 
     //music information variables
@@ -22,6 +42,8 @@ window.addEventListener('DOMContentLoaded',function() {
     let allMusicIndex = [1,2,3,4,5,6];
     let firstsong = true;
     let mood;
+    let artist;
+    let songTitle;
 
     //randomly choose the song until every song is played
     function chooseSong() {
@@ -41,6 +63,15 @@ window.addEventListener('DOMContentLoaded',function() {
                 console.log(list["track"+musicIndex].uri);
                 let musicUri = list["track"+musicIndex].uri;
                 audioPlay.setAttribute("src", musicUri);
+
+                //add artist
+                artist = list["track"+musicIndex].artist;
+                document.getElementById("artist").innerHTML = artist;
+
+                //add song title
+                songTitle = list["track"+musicIndex].name;
+                document.getElementById("song-title").innerHTML = songTitle;
+                
                 //before switch dog state we need to set back to default
                 defaultAnimate();
                 transition=true;
@@ -67,11 +98,23 @@ window.addEventListener('DOMContentLoaded',function() {
         }
     }
 
-    //choose the first song, then play or switch
+    //mute function
+    function muteSound() {
+        if(audioPlay.muted) {
+            audioPlay.muted = false;
+            muteIcon.setAttribute ("src", "./image/sound.png");   
+        } else {
+            audioPlay.muted = true;
+            muteIcon.setAttribute ("src", "./image/mute.png")
+        }
+    }
+
+    //choose the first song, then play or switch, and mute sound
     playMusic();
     playIcon.setAttribute("src", "./image/playIcon.png");
     playButton.addEventListener("click", controlSongPlay);
     switchButton.addEventListener("click", playMusic);
+    muteButton.addEventListener("click", muteSound);
 
     //this let is to record the state of last frame for transition
     let transition=true;
@@ -252,6 +295,66 @@ window.addEventListener('DOMContentLoaded',function() {
 
 
 
+    //ADD BUBBLES
+
+    //create bubble material
+    const bubblematerial = new THREE.MeshPhongMaterial ({
+        emissive: 0xFFFFFF,
+        opacity: 0.6,
+        transparent: true,
+        side: THREE.DoubleSide,
+    });
+
+    //create bubble geometry
+    const bubble_radius = 2;
+    const bubble_widthSegments = 20;
+    const bubble_heightSegments = 20;
+    const bubble_geometry = new THREE.SphereGeometry(bubble_radius, bubble_widthSegments, bubble_heightSegments);
+    
+    //create instanced bubbles matrix
+    let bubble_count = 700;
+    let bubbles;
+    let bubble_matrix;
+
+    //create random Matrix4 for one bubble
+    function randomizeMatrix(){
+        let matrix = new THREE.Matrix4();
+        
+        const bubble_position = new THREE.Vector3();
+		const bubble_rotation = new THREE.Euler();
+		const bubble_quaternion = new THREE.Quaternion();
+		const bubble_scale = new THREE.Vector3();
+
+		bubble_position.x = Math.random() * 200 - 100;
+		bubble_position.y = Math.random() * 100 - 50;
+		bubble_position.z = Math.random() * 200 - 100;
+
+		bubble_rotation.x = Math.random() * 2 * Math.PI;
+		bubble_rotation.y = Math.random() * 2 * Math.PI;
+		bubble_rotation.z = Math.random() * 2 * Math.PI;
+
+		bubble_quaternion.setFromEuler(bubble_rotation);
+
+		bubble_scale.x = bubble_scale.y = bubble_scale.z = Math.random();
+
+		matrix.compose(bubble_position, bubble_quaternion, bubble_scale);
+        return matrix;
+    };
+    
+    //create bubble mesh
+    function createBubbles(){
+        bubbles = new THREE.InstancedMesh(bubble_geometry, bubblematerial, bubble_count);
+        for(let i = 0; i < bubble_count; i++){
+            bubble_matrix = randomizeMatrix();
+            bubbles.setMatrixAt(i, bubble_matrix);
+            bubbles.setColorAt(i, new THREE.Color(Math.random(), Math.random(), Math.random(), Math.random()))
+        }
+    };
+    
+    createBubbles();
+
+
+
     //ANIMATION
 
     //default state
@@ -287,6 +390,12 @@ window.addEventListener('DOMContentLoaded',function() {
             } else {
                 scene.remove(rain);
             }
+            if(bubbles===undefined||bubbles.parent===null){
+                ;
+            }else{
+                scene.remove(bubbles);
+                console.log("removebubbles");
+            }
         }
 
         removeElements();
@@ -298,6 +407,9 @@ window.addEventListener('DOMContentLoaded',function() {
         }
 
         removeMousemove();
+
+        document.getElementById("artist").style.color = "#000000";
+        document.getElementById("song-title").style.color = "#000000";
     };
     
     //chill state
@@ -387,6 +499,8 @@ window.addEventListener('DOMContentLoaded',function() {
         }
 
         headGroupUp(0.002, 0.05);
+        document.getElementById("artist").style.color = "#FFFFFF";
+        document.getElementById("song-title").style.color = "#FFFFFF";
     }
 
     //bounce statement of the dog
@@ -425,6 +539,11 @@ window.addEventListener('DOMContentLoaded',function() {
     
     //peaceful state of the dog
     function peacefulAnimate(time){
+        if(transition){
+            scene.add(bubbles);
+            console.log("addbubbles");
+        }
+
         function feetSwim(speed, amplitude){
             const phase_array = [0,0,2,2];
             let foot_index = 0;
@@ -478,6 +597,29 @@ window.addEventListener('DOMContentLoaded',function() {
         }
 
         dogSwimFly(0.003, 1.5);
+
+        function bubblesFloat(movespeed, scalespeed, scaleamplitude){
+            let current_matrix = new THREE.Matrix4();
+            let current_bubble_position = new THREE.Vector3();
+            let current_bubble_quaternion = new THREE.Quaternion();
+		    let current_bubble_scale = new THREE.Vector3();
+            for(let i = 0; i < bubble_count; i++){
+                bubbles.getMatrixAt(i,current_matrix);
+                current_matrix.decompose(current_bubble_position, current_bubble_quaternion, current_bubble_scale);
+                current_bubble_position.z-=movespeed;
+                if(current_bubble_position.z<-100){
+		            current_bubble_position.z = Math.random() * 150 - 50;
+                }
+                current_bubble_scale.x=current_bubble_scale.x*(1+scaleamplitude*Math.sin(scalespeed*time+i));
+                current_bubble_scale.y=current_bubble_scale.y*(1+scaleamplitude*Math.sin(scalespeed*time+i));
+                current_bubble_scale.z=current_bubble_scale.z*(1+scaleamplitude*Math.sin(scalespeed*time+i));
+                current_matrix.compose(current_bubble_position, current_bubble_quaternion, current_bubble_scale);
+                bubbles.setMatrixAt(i, current_matrix);
+            }    
+        }
+        bubbles.instanceMatrix.needsUpdate = true;
+
+        bubblesFloat(0.3, 0.03, 0.015);
     }
 
     //sorrowful state of the dog
@@ -517,8 +659,10 @@ window.addEventListener('DOMContentLoaded',function() {
         requestAnimationFrame(dogReaction);
         if(audioPlay.paused === true){
             // defaultAnimate();
+            songInfo.style.display='none';
             console.log("default");
         }else{
+            songInfo.style.display='block';
             text.style.display='none';
             if(mood==="chill"){
                 scene.background = new THREE.Color(0xCBF6C5);

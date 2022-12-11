@@ -5,15 +5,26 @@
         <meta name="viewport" content="width=device-width", initial-scale="1.0" />
         <link rel="stylesheet" href="./style.css">
     </head>
+
     <body>
+
+        <!-- logo header -->
         <div class="logo-header">
             <h1><span style="font-family: Dancing Script; font-size: 0.5em; color: #C966B6;">the</span><br>Dancing Dog</h1>
             <p class="text">Play the dog some music shall we? 🎵</p>
         </div>
-        <div class="nav">
+
+        <!-- button group -->
+        <div class="button-group">
+            <button id="mute">
+                <img class="mute-icon" src="./image/sound.png">
+            </button>
             <button id="open-about">About this project</button>
         </div>
+
+        <!-- threejs -->
         <canvas id="c"></canvas>
+
         <script type="importmap">
             {
                 "imports":{
@@ -22,8 +33,12 @@
                 }
             }
         </script>
+
         <script type="module" src="./index.js"></script>
+
+        <!-- audio control -->
         <audio src="" id="audio-play" autoplay=false loop=true></audio>
+
         <div class="music-controls">
             <button class="play-button">
                 <img class="play-icon" src="./image/playIcon.png">
@@ -33,6 +48,16 @@
             </button>
         </div>
 
+        <!-- song info -->
+        <div id="song-info">
+            <h2>Now playing</h2>
+            <p>
+                <span id="song-title">Song title</span><br>
+                <span id="artist">Artist</span>
+            </p>
+        </div>
+
+        <!-- about page -->
         <div id="about">
             <h1><span style="font-family: Dancing Script; font-size: 0.5em; color: #C966B6;">the</span><br>Dancing Dog</h1>
             <img style="max-width: 100px;" src="./image/dog.png">
@@ -54,20 +79,6 @@
                 <img style="max-width: 48px" src="./image/close-icon.png">
             </button>
         </div>
-
-        <script>
-            const about = document.getElementById("about");
-            const open = document.getElementById("open-about")
-            const close = document.getElementById("close-about")
-            
-            open.onclick = function() {
-                about.style.display = "block";
-            }
-
-            close.onclick = function() {
-                about.style.display = "none";
-            }
-        </script>
 
     </body>
 </html>

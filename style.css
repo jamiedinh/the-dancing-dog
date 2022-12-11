@@ -60,16 +60,6 @@ a:hover {
     line-height: 0em;
 }
 
-#open-about {
-    cursor: pointer;
-    background-color: transparent;
-    border: 1px solid #C966B6;
-    padding: 12px 16px;
-    font-family: 'Mikado';
-    font-size: 1.2em;
-    color: #C966B6;
-}
-
 #audio-play {
     position: fixed;
     z-index: 1;
@@ -111,7 +101,7 @@ a:hover {
     height: 3rem;
 }
 
-.nav {
+.button-group {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -119,7 +109,23 @@ a:hover {
     margin-bottom: 4em; 
 }
 
+.button-group button {
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #C966B6;
+    padding: 12px 16px;
+    font-family: 'Mikado';
+    font-size: 1.2em;
+    color: #C966B6;
+    float: left;
+}
+
+.button-group button:not(:last-child) {
+    border-right: none !important;
+}
+
 #about {
+    cursor: pointer;
     background-color: #FFECFB;
     display: none;
     position: absolute;
@@ -140,3 +146,24 @@ a:hover {
     right: 0;
 }
 
+#mute {
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #C966B6;
+    padding: 12px 16px;
+    color: #C966B6;
+}
+
+.mute-icon {
+    width: 1em;
+    height: 1em;
+    color: pink;
+}
+
+#song-info {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-left: 4em;
+    margin-bottom: 4em; 
+}
