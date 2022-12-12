@@ -378,7 +378,7 @@ window.addEventListener('DOMContentLoaded',function() {
         defaultRotationSet(time);
         defaultPositionSet(time);
 
-        //remove bone and rain
+        //remove additional elements in each states
         function removeElements() {
             if(bone===undefined||bone.parent===null) {
                 ;
@@ -394,7 +394,6 @@ window.addEventListener('DOMContentLoaded',function() {
                 ;
             }else{
                 scene.remove(bubbles);
-                console.log("removebubbles");
             }
         }
 
@@ -431,7 +430,7 @@ window.addEventListener('DOMContentLoaded',function() {
             head_group.rotation.y = amplitude*Math.sin(speed*time);
         }
 
-        headGroupShake(0.01, 0.08);
+        headGroupShake(0.01, 0.1);
     }
 
     //hungry state
@@ -498,7 +497,7 @@ window.addEventListener('DOMContentLoaded',function() {
             head_group.rotation.x=amplitude*Math.sin(speed*time);
         }
 
-        headGroupUp(0.002, 0.05);
+        headGroupUp(0.002, 0.2);
         document.getElementById("artist").style.color = "#FFFFFF";
         document.getElementById("song-title").style.color = "#FFFFFF";
     }
@@ -629,12 +628,12 @@ window.addEventListener('DOMContentLoaded',function() {
             head_group.rotation.y=amplitude*Math.sin(speed*time);
         }
 
-        headGroupDown(0.002, 0.05);
+        headGroupDown(0.002, 0.1);
 
         function curlFeet(speed, amplitude){
             let foot_index = 0;
             feet.forEach(foot =>{
-                foot.position.x=(1.2+amplitude*Math.sin(speed*time))*feet_position[foot_index][0];
+                foot.position.x=(1.4+amplitude*Math.sin(speed*time))*feet_position[foot_index][0];
                 foot.position.y=0.5*feet_position[foot_index][1];
                 foot.position.z=(1.1+amplitude*Math.sin(speed*time))*feet_position[foot_index][2];
                 foot_index++;
@@ -661,6 +660,7 @@ window.addEventListener('DOMContentLoaded',function() {
             // defaultAnimate();
             songInfo.style.display='none';
             console.log("default");
+            text.style.display='block';
         }else{
             songInfo.style.display='block';
             text.style.display='none';

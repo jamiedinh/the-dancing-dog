@@ -21,7 +21,7 @@ h1 {
 
 h2 {
     font-family: 'Mikado';
-    font-size: 1.7em;
+    font-size: 1.6em;
     line-height: 0.5em;
     color: #C966B6;
     margin-top: 2em;
@@ -29,7 +29,7 @@ h2 {
 
 p {
     font-family: "Manjari";
-    font-size: 1.3em;
+    font-size: 1.2em;
     line-height: 1.5em;
 }
 
@@ -125,7 +125,6 @@ a:hover {
 }
 
 #about {
-    cursor: pointer;
     background-color: #FFECFB;
     display: none;
     position: absolute;
@@ -165,5 +164,5 @@ a:hover {
     left: 0;
     bottom: 0;
     margin-left: 4em;
-    margin-bottom: 4em; 
+    margin-bottom: 2.5em; 
 }
